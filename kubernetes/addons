@@ -1,0 +1,4 @@
+kubectl create -f https://github.com/kubernetes/kops/tree/master/addons/route53-mapper
+kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl config view
+https://<kubernetes-master>/ui

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: samplecore
+ labels:
+   app: samplecore
+spec:
+ containers:
+ - name: samplecore-container
+   image: "boranx/dotnetcorekubernetes"
+   ports:
+   - containerPort: 80

@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: samplecore-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: samplecore
+  template:
+    metadata:
+      labels:
+        app: samplecore
+    spec:
+      containers:
+      - name: samplecore-container
+        image: "boranx/dotnetcorekubernetes"
+        ports:
+        - containerPort: 80
