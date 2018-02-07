@@ -4,12 +4,12 @@ metadata:
   name: samplecore-service
   labels:
     app: samplecore-service
-    dns: route53
+    # dns: route53
   annotations:
-    domainName: "samplecore-service.boranpoc.com"
+    # domainName: "samplecore-service.boranpoc.com"
     # service.beta.kubernetes.io/aws-load-balancer-ssl-cert: "arn:aws:acm:us-west-1:659153740712:certificate/xxxxxxxx"
-    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    # service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443"
+    # service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
 spec:
   selector:
     app: samplecore
