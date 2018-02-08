@@ -1,4 +1,3 @@
-git clone ..
 ./build.sh || ./build.ps1
 
 docker build . -t boranx/dotnetcorekubernetes
