@@ -1,23 +1,25 @@
-# Dockerised Scaffold ASP.NET Core WebApi Sample with HATEOAS, Versioning & Swagger, that contains Cake Build Scripts & Kubernetes Deployment ymls
+# Dotnet Core WebApi with HATEOAS, Versioning & Swagger, that contains Cake Build Scripts & Kubernetes Deployment ymls
 
 The full stack .NET Core Web API project which contains
 
-Infrastructure:
+##### Infrastructure:
 
-* Cross platform build scripts (Cake)
+* Cross platform build scripts (Cake) - No additional installations needed
 * Docker support
 * Kubernetes yml files
 
-Architecture:
+##### Architecture:
 
 * HATEOAS
 * API Versioning
 * Swagger UI
 * A controller which is dealing with FoodItems. You can GET/POST/PUT/PATCH and DELETE them.
 
-## Build & Artifacts
+## Dependencies
 
-* Take a look at ```build.cake```
+Nothing
+
+## Build & Artifacts
 
 * If you are using windows,
 
@@ -30,6 +32,8 @@ build.ps1
 ```shell
 ./build.sh
 ```
+
+* You can just take a look at ```build.cake``` to see whats going on.
 
 ## Docker
 
