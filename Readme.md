@@ -1,77 +1,136 @@
-# ASP.NET Core WebApi Sample with HATEOAS, Versioning & Swagger
+# Dockerised Scaffold ASP.NET Core WebApi Sample with HATEOAS, Versioning & Swagger, that contains Cake Build Scripts & Kubernetes Deployment ymls
 
-In this repository I want to give a plain starting point at how to build a WebAPI with ASP.NET Core.
+The full stack .NET Core Web API project which contains
 
-This repository contains a controller which is dealing with FoodItems. You can GET/POST/PUT/PATCH and DELETE them.
+Infrastructure:
 
-Hope this helps.
+* Cross platform build scripts (Cake)
+* Docker support
+* Kubernetes yml files
 
-See the examples here: 
+Architecture:
 
-## Versions
+* HATEOAS
+* API Versioning
+* Swagger UI
+* A controller which is dealing with FoodItems. You can GET/POST/PUT/PATCH and DELETE them.
 
-``` http://localhost:29435/swagger ```
+## Build & Artifacts
+
+* Take a look at ```build.cake```
+
+* If you are using windows,
+
+```shell
+build.ps1
+```
+
+* If you are using linux,
+
+```shell
+./build.sh
+```
+
+## Docker
+
+```shell
+docker build . # Create an image using artifacts
+```
+
+```shell
+docker run -d -p 80:80 yourimageid # Provision & run the container
+```
+
+* OR Instant Run:
+
+```shell
+docker run -d -p 80:80 boranx/dotnetcorekubernetes
+```
+
+Browse : <http://localhost/swagger/#/>
+
+## Kubernetes
+
+```shell
+kubectl apply -f kubernetes/aspnetcore-rest-api-pod.yaml # Deploy the pod
+```
+
+```shell
+kubectl apply -f kubernetes/aspnetcore-rest-api-ks.yaml # Define services
+```
+
+## Example API Calls
+
+### Versions
+
+```http://localhost:80/swagger```
 
 ![ASPNETCOREWebAPIVersions](./.github/versions.jpg)
 
-## GET all Foods
+### GET all Foods
 
-``` http://localhost:29435/api/v1/foods ```
+```http://localhost:80/api/v1/foods```
 
 ![ASPNETCOREWebAPIGET](./.github/get.jpg)
 
-## GET single food
+### GET single food
 
-``` http://localhost:29435/api/v1/foods/2 ```
+```http://localhost:80/api/v1/foods/2```
 
 ![ASPNETCOREWebAPIGET](./.github/getSingle.jpg)
 
-## POST a foodItem
+### POST a foodItem
 
-``` http://localhost:29435/api/v1/foods ```
+```http://localhost:80/api/v1/foods```
 
 ```javascript
+
   {
       "name": "Lasagne",
       "type": "Main",
       "calories": 3000,
       "created": "2017-09-16T17:50:08.1510899+02:00"
   }
+
 ```
 
 ![ASPNETCOREWebAPIGET](./.github/post.jpg)
 
-## PUT a foodItem
+### PUT a foodItem
 
-``` http://localhost:29435/api/v1/foods/5 ```
+```http://localhost:80/api/v1/foods/5```
 
-``` javascript
-{
+```javascript
+
+  {
     "name": "Lasagne2",
     "type": "Main",
     "calories": 3000,
     "created": "2017-09-16T17:50:08.1510899+02:00"
-}
+  }
+
 ```
 
 ![ASPNETCOREWebAPIGET](./.github/put.jpg)
 
 
-## PATCH a foodItem
+### PATCH a foodItem
 
-``` http://localhost:29435/api/v1/foods/5 ```
+```http://localhost:80/api/v1/foods/5```
 
-``` javascript
-[
-  { "op": "replace", "path": "/name", "value": "mynewname" }
-]
+```javascript
+
+  [
+    { "op": "replace", "path": "/name", "value": "mynewname" }
+  ]
+
 ```
 
 ![ASPNETCOREWebAPIGET](./.github/patch.jpg)
 
-## DELETE a foodItem
+### DELETE a foodItem
 
-``` http://localhost:29435/api/v1/foods/5 ```
+```http://localhost:80/api/v1/foods/5```
 
 
 ![ASPNETCOREWebAPIGET](./.github/delete.jpg)
