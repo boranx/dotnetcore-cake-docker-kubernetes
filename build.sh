@@ -5,12 +5,17 @@
 # Feel free to change this file to fit your needs.
 ##########################################################################
 
+# Tool Versions & Params
+CAKE_VERSION=0.25.0
+NUGET_VERSION=latest # or v4.5.1 etc..
+DOTNET_VERSION=2.1.4
+NUGET_URL=https://dist.nuget.org/win-x86-commandline/$NUGET_VERSION/nuget.exe
+DOTNET_INSTALLER_URI=https://dot.net/v1/dotnet-install.sh
+
 # Define directories.
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 TOOLS_DIR=$SCRIPT_DIR/tools
 NUGET_EXE=$TOOLS_DIR/nuget.exe
-NUGET_URL=https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-CAKE_VERSION=0.25.0
 CAKE_EXE=$TOOLS_DIR/Cake.$CAKE_VERSION/Cake.exe
 
 # Define default arguments.
@@ -46,8 +51,8 @@ echo "Installing .NET CLI..."
 if [ ! -d "$SCRIPT_DIR/.dotnet" ]; then
   mkdir "$SCRIPT_DIR/.dotnet"
 fi
-curl -Lsfo "$SCRIPT_DIR/.dotnet/dotnet-install.sh" https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh
-sudo bash "$SCRIPT_DIR/.dotnet/dotnet-install.sh" --version 2.0.0 --install-dir .dotnet --no-path
+curl -Lsfo "$SCRIPT_DIR/.dotnet/dotnet-install.sh" $DOTNET_INSTALLER_URI
+sudo bash "$SCRIPT_DIR/.dotnet/dotnet-install.sh" --version $DOTNET_VERSION --install-dir .dotnet --no-path
 export PATH="$SCRIPT_DIR/.dotnet":$PATH
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -62,7 +67,7 @@ if [ ! -f "$NUGET_EXE" ]; then
     echo "Downloading NuGet..."
     curl -Lsfo "$NUGET_EXE" $NUGET_URL
     if [ $? -ne 0 ]; then
-        echo "An error occured while downloading nuget.exe."
+        echo "An error occurred while downloading nuget.exe."
         exit 1
     fi
 fi
