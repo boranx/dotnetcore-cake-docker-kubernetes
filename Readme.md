@@ -17,7 +17,14 @@ The full stack .NET Core Web API project which contains
 
 ## Dependencies
 
+##### Windows:
+
 Nothing
+
+##### OSX/Linux
+
+mono == 5.8.0
+libunwind8 == 1.1-4.1
 
 ## Build & Artifacts
 
